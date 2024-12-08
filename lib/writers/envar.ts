@@ -51,7 +51,7 @@ export function initEnv(): Promise<void> {
   }
 
   writeFooter(prev: string): string {
-    return prev.trimEnd() + `\n  ]);
+    return prev.trimEnd() + `\n  ]).then(/* convert to Promise<void> */);
 }
 `;
   }
