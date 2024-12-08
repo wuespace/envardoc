@@ -35,7 +35,10 @@ export class DocsWriter implements Writer {
     }
 
     // Default value
-    prev += '#### Default Value\n\n';
+    const defaultSource = variable.optional
+      ? "used by the application if not provided"
+      : "from the example environment file, must be provided";
+    prev += `#### Default Value (${defaultSource})\n\n`;
     prev += this.markdownCodeBlock(`${variable.name}=${variable.defaultValue}`);
 
     // Example values
