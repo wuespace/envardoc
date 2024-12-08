@@ -22,7 +22,7 @@ export class DocsWriter implements Writer {
   writeVariable(variable: Variable, prev: string): string {
     // Heading
     const optMarker = variable.optional ? " (optional)" : "";
-    prev += `\n### \`${variable.name}\`${optMarker}\n\n`;
+    prev += `\n### \`${variable.name}\`${optMarker}\n`;
 
     // Description
     variable.description?.split("\n").slice(0, -1).forEach((line) => {
@@ -35,6 +35,7 @@ export class DocsWriter implements Writer {
     }
 
     // Default value
+    prev += '#### Default Value\n\n';
     prev += this.markdownCodeBlock(`${variable.name}=${variable.defaultValue}`);
 
     // Example values
