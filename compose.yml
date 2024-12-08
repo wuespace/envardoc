@@ -3,5 +3,5 @@ services:
     image: ghcr.io/wuespace/envdoc
     volumes:
       - .:/data
-    command: md .env.example
+    command: docs .env.example
     build: .
