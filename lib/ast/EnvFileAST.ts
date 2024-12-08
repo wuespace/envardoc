@@ -72,7 +72,9 @@ export class EnvFileAST {
         this.sections[this.currentSection].variables[variable];
       this.sections[this.currentSection].variables[variable] = {
         ...currentVariableDetails,
+        // if any occurrance is required, the variable is required:
         optional: currentVariableDetails.optional && optional,
+        // any 2nd+ variable occurrance serves as an example (the first is the default value):
         examples: currentVariableDetails.examples.concat(value || []),
       };
     }
@@ -100,25 +102,73 @@ export class EnvFileAST {
     this.logger.debug("write");
     let output = writer.writeHeader?.("") || "";
 
-    if (this.topLevelDescription) {
-      this.topLevelDescription.split("\n").forEach((line, index, array) => {
-        if (index === array.length - 1) {
-          return; // omit the last (empty) line
-        }
-        output = writer.writeDescriptionLine?.(line, output) || output;
-      });
-    }
+    output = this.writeTopLevelDescription(output, writer);
+    output = this.writeSections(output, writer);
 
-    for (const sectionName of Object.keys(this.sections).toSorted()) {
-      output = writer.writeSection?.(sectionName, output) || output;
+    return output;
+  }
 
+  /**
+   * Writes documentation about the registered sections and their variables.
+   * @param output the existing output
+   * @param writer the writer to use
+   * @returns the output including the sections' details
+   */
+  private writeSections(output: string, writer: Writer) {
+    const sortedSectionNames = Object.keys(this.sections).toSorted();
+
+    for (const sectionName of sortedSectionNames) {
+      // Section Header
+      output = writer.writeSection?.(sectionName, output) ?? output;
+      // Variables
       const section = this.sections[sectionName];
-
-      for (const variableName of Object.keys(section.variables).toSorted()) {
-        const variable = section.variables[variableName];
-        output = writer.writeVariable?.(variable, output) || output;
-      }
+      output = this.writeVariables(section, output, writer);
     }
+
+    return output;
+  }
+
+  /**
+   * Writes the documentation for the variables in the given section.
+   * @param section the section to document
+   * @param output the pre-existing output
+   * @param writer the writer to use
+   * @returns the output including the section's variables
+   */
+  private writeVariables(
+    section: Section,
+    output: string,
+    writer: Writer,
+  ) {
+    const sortedEnvVarKeys = Object.keys(section.variables).toSorted();
+
+    for (const variableName of sortedEnvVarKeys) {
+      const variable = section.variables[variableName];
+      output = writer.writeVariable?.(variable, output) ?? output;
+    }
+
+    return output;
+  }
+
+  /**
+   * Writes the top-level description of the file. If there is no description, the output is returned unchanged.
+   * @param output the pre-existing output
+   * @param writer the writer to use
+   * @returns the output including the top-level description
+   */
+  private writeTopLevelDescription(output: string, writer: Writer) {
+    if (!this.topLevelDescription) {
+      return output;
+    }
+
+    const lines = this.topLevelDescription
+      .trimEnd() // Remove trailing newline
+      .split("\n"); // Split into lines
+
+    for (const line of lines) {
+      output = writer.writeDescriptionLine?.(line, output) ?? output;
+    }
+
     return output;
   }
 }
