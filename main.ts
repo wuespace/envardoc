@@ -31,7 +31,7 @@ if (import.meta.main) {
     });
 
   await new Command()
-    .name("envdoc")
+    .name("envardoc")
     .version(metadata.version)
     .description(metadata.description)
     .meta('Deno', Deno.version.deno)

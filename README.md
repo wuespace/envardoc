@@ -1,11 +1,11 @@
-# envdoc
+# envardoc
 
 A documentation generator for .env files.
 
 ## Usage
 
 ```shell
-envdoc <writer> <path-to-env-file>
+envardoc <writer> <path-to-env-file>
 ```
 
 ### Writers
@@ -16,13 +16,13 @@ envdoc <writer> <path-to-env-file>
 ### With Deno
 
 ```shell
-deno run --allow-read jsr:@wuespace/envdoc md .env.example
+deno run --allow-read jsr:@wuespace/envardoc md .env.example
 ```
 
 ### With Docker
 
 ```shell
-docker run -it -v .:/data envdoc:latest md .env.example
+docker run -it -v .:/data ghcr.io/wuespace/envardoc:latest md .env.example
 ```
 
 ## Env File Format
