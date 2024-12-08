@@ -1,5 +1,10 @@
 import { parse } from "$parse";
-import { DocsWriter, EnvExampleWriter, type Writer } from "$writers";
+import {
+  DocsWriter,
+  EnvarWriter,
+  EnvExampleWriter,
+  type Writer,
+} from "$writers";
 import { Command } from "@cliffy/command";
 import { exists } from "@std/fs";
 import { resolve } from "@std/path";
@@ -20,6 +25,23 @@ if (import.meta.main) {
         console.log(`File written: ${output}`);
       } else {
         console.log(markdown);
+      }
+    });
+
+  const envar = new Command()
+    .arguments("<path:file>")
+    .description("Generate jsr:@wuespace/envar source code from a .env file")
+    .option("-o, --output <path:string>", "Output file path")
+    .action(async ({ output }, path) => {
+      const sourceCode = await parseAndConvert(
+        path,
+        new EnvarWriter(),
+      );
+      if (output) {
+        await Deno.writeTextFile(output, sourceCode);
+        console.log(`File written: ${output}`);
+      } else {
+        console.log(sourceCode);
       }
     });
 
@@ -52,6 +74,7 @@ if (import.meta.main) {
     )
     .command("docs", docs)
     .command("example", envExample)
+    .command("envar", envar)
     .parse(Deno.args);
 }
 
