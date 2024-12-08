@@ -1,0 +1,23 @@
+{
+  "name": "@wuespace/envdoc",
+  "version": "0.1.0",
+  "description": "A documentation generator for .env files",
+  "license": "MIT",
+  "main": "main.ts",
+  "exports": "./main.ts",
+  "publish": {
+    "include": ["README.md", "LICENSE", "main.ts", "lib/**/*"]
+  },
+  "tasks": {
+    "dev": "deno run --allow-read='.' --watch main.ts md .env.example",
+    "run": "deno run --allow-read='.' main.ts md .env.example"
+  },
+  "imports": {
+    "@std/fs": "jsr:@std/fs@^1.0.6",
+    "@std/log": "jsr:@std/log@^0.224.11",
+    "@std/path": "jsr:@std/path@^1.0.8",
+    "$parse": "./lib/parse.ts",
+    "$ast": "./lib/ast/mod.ts",
+    "$writers": "./lib/writers/mod.ts"
+  }
+}
