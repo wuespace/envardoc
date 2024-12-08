@@ -1,6 +1,6 @@
-import { getLogger, Logger } from "@std/log";
-import { Section } from "$ast";
-import { Writer } from "$writers";
+import { getLogger, type Logger } from "@std/log";
+import type { Section } from "$ast";
+import type { Writer } from "$writers";
 
 export class EnvFileAST {
   /**

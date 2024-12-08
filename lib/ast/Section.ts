@@ -1,4 +1,4 @@
-import { Variable } from "$ast";
+import type { Variable } from "$ast";
 
 /**
  * Represents a section in the `.env` file.

@@ -1,5 +1,5 @@
-import { Variable } from "$ast";
-import { Writer } from "$writers";
+import type { Variable } from "$ast";
+import type { Writer } from "$writers";
 
 /**
  * A writer that writes the AST to an example environment file.

@@ -1,4 +1,4 @@
-import { Variable } from "$ast";
+import type { Variable } from "$ast";
 
 /**
  * Interface for writing an {@link EnvFileAST} to a `string`.
