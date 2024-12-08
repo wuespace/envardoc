@@ -5,7 +5,7 @@ WORKDIR /envdoc
 
 RUN deno compile --allow-read main.ts
 
-FROM ubuntu:22.04
+FROM gcr.io/distroless/cc-debian12
 
 COPY --from=0 /envdoc/envdoc /envdoc
 
