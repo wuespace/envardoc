@@ -1,0 +1,7 @@
+services:
+  envdoc:
+    image: ghcr.io/wuespace/envdoc
+    volumes:
+      - .:/data
+    command: md .env.example
+    build: .
