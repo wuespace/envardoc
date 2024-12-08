@@ -18,6 +18,7 @@ envardoc <writer> <path-to-env-file>
 
 - `docs` - Prints the documentation in markdown format
 - `example` - Prints a `.env.example` file with all variables and comments
+- `envar` - Prints TypeScript code to use with the [`jsr:@wuespace/envar`](https://jsr.io/@wuespace/envar) package.
 
 ### With Deno
 
