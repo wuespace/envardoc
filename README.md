@@ -1,4 +1,10 @@
-# envardoc
+# @wuespace/envardoc
+
+[![JSR Scope](https://jsr.io/badges/@wuespace)](https://jsr.io/@wuespace)
+[![JSR](https://jsr.io/badges/@wuespace/envardoc)](https://jsr.io/@wuespace/envardoc)
+[![JSR Score](https://jsr.io/badges/@wuespace/envardoc/score)](https://jsr.io/@wuespace/envardoc)
+[![Deno CI](https://github.com/wuespace/envardoc/actions/workflows/deno.yml/badge.svg)](https://github.com/wuespace/envardoc/actions/workflows/deno.yml)
+[![Publish Workflow](https://github.com/wuespace/envardoc/actions/workflows/publish-jsr.yml/badge.svg)](https://github.com/wuespace/envardoc/actions/workflows/publish-jsr.yml)
 
 A documentation generator for .env files.
 
@@ -10,19 +16,19 @@ envardoc <writer> <path-to-env-file>
 
 ### Writers
 
-- `md` - Prints the documentation in markdown format
-- `env` - Prints a `.env.example` file with all variables and comments
+- `docs` - Prints the documentation in markdown format
+- `example` - Prints a `.env.example` file with all variables and comments
 
 ### With Deno
 
 ```shell
-deno run --allow-read jsr:@wuespace/envardoc md .env.example
+deno run --allow-read jsr:@wuespace/envardoc docs .env.example > env.md
 ```
 
 ### With Docker
 
 ```shell
-docker run -it -v .:/data ghcr.io/wuespace/envardoc:latest md .env.example
+docker run -it -v .:/data ghcr.io/wuespace/envardoc:latest docs .env.example > env.md
 ```
 
 ## Env File Format
