@@ -1,3 +1,4 @@
+import { exists } from "@std/fs";
 import { resolve } from "@std/path";
 import { EnvExampleWriter } from "./lib/writers/env-example.ts";
 import { DocsWriter } from "./lib/writers/docs.ts";
@@ -17,6 +18,11 @@ if (import.meta.main) {
   }
 
   const input = resolve(Deno.args[1]);
+
+  if (!(await exists(input))) {
+    console.error(`File not found: ${input}`);
+    Deno.exit(1);
+  }
 
   const content = await Deno.readTextFile(input);
 
