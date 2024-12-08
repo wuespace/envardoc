@@ -72,9 +72,9 @@ export class EnvFileAST {
         this.sections[this.currentSection].variables[variable];
       this.sections[this.currentSection].variables[variable] = {
         ...currentVariableDetails,
-        // if any occurrance is required, the variable is required:
+        // if any occurrence is required, the variable is required:
         optional: currentVariableDetails.optional && optional,
-        // any 2nd+ variable occurrance serves as an example (the first is the default value):
+        // any 2nd+ variable occurrence serves as an example (the first is the default value):
         examples: currentVariableDetails.examples.concat(value || []),
       };
     }
