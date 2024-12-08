@@ -10,6 +10,7 @@
   },
   "tasks": {
     "dev": "deno run --allow-read='.' --watch main.ts docs .env.example",
+    "dev:example": "deno run --allow-read='.' --watch main.ts example .env.example",
     "run": "deno run --allow-read='.' main.ts docs .env.example"
   },
   "imports": {
