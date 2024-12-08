@@ -104,8 +104,7 @@ export class EnvFileAST {
 
     output = this.writeTopLevelDescription(output, writer);
     output = this.writeSections(output, writer);
-
-    return output;
+    return writer.writeFooter?.(output) ?? output;
   }
 
   /**
