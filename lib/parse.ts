@@ -58,9 +58,9 @@ export function parse(
     }
 
     // Descriptions
-    if (currentLine.startsWith("# ")) {
+    if (currentLine.startsWith("#")) {
       // A comment that isn't a variable definition is a description
-      ast.registerDescription(currentLine.slice(2));
+      ast.registerDescription(currentLine.slice(1).trim());
       continue;
     }
   }
