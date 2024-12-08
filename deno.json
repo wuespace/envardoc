@@ -9,10 +9,11 @@
     "include": ["README.md", "LICENSE", "main.ts", "lib/**/*"]
   },
   "tasks": {
-    "dev": "deno run --allow-read='.' --watch main.ts md .env.example",
-    "run": "deno run --allow-read='.' main.ts md .env.example"
+    "dev": "deno run --allow-read='.' --watch main.ts docs .env.example",
+    "run": "deno run --allow-read='.' main.ts docs .env.example"
   },
   "imports": {
+    "@cliffy/command": "jsr:@cliffy/command@1.0.0-rc.7",
     "@std/fs": "jsr:@std/fs@^1.0.6",
     "@std/log": "jsr:@std/log@^0.224.11",
     "@std/path": "jsr:@std/path@^1.0.8",
