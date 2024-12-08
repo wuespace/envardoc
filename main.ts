@@ -35,7 +35,7 @@ if (import.meta.main) {
       );
       if (replace || output) {
         await Deno.writeTextFile(output ?? path, fileContents);
-        console.log(`File written: ${path}`);
+        console.log(`File written: ${output ?? path}`);
       } else {
         console.log(fileContents);
       }
