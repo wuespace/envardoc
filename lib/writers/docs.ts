@@ -21,7 +21,8 @@ export class DocsWriter implements Writer {
 
   writeVariable(variable: Variable, prev: string): string {
     // Heading
-    prev += `\n### \`${variable.name}\`\n\n`;
+    const optMarker = variable.optional ? " (optional)" : "";
+    prev += `\n### \`${variable.name}\`${optMarker}\n\n`;
 
     // Description
     variable.description?.split("\n").slice(0, -1).forEach((line) => {
