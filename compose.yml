@@ -1,6 +1,6 @@
 services:
-  envdoc:
-    image: ghcr.io/wuespace/envdoc
+  envardoc:
+    image: ghcr.io/wuespace/envardoc
     volumes:
       - .:/data
     command: docs .env.example
