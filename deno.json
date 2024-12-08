@@ -1,6 +1,6 @@
 {
   "name": "@wuespace/envardoc",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A documentation generator for .env files",
   "license": "MIT",
   "main": "main.ts",
