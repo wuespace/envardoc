@@ -16,14 +16,15 @@ export class EnvExampleWriter implements Writer {
   }
 
   writeVariable(variable: Variable, prev: string): string {
-    prev += "#\n";
     variable.description?.split("\n").slice(0, -1).forEach((line) => {
       prev += `# ${line}\n`;
     });
+    // Variable name and default value
     if (variable.optional) {
       prev += "# ";
     }
     prev += `${variable.name}=${variable.defaultValue}\n`;
+    // Additional examples
     variable.examples.forEach((example) => {
       prev += `# ${variable.name}=${example}\n`;
     });
