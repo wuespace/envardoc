@@ -33,4 +33,4 @@ jobs:
           jq --arg version "$version" '.version = $version' deno.json > tmp.$$.json
           mv tmp.$$.json deno.json
       - name: Publish to JSR
-        run: deno publish --allow-dirty --dry-run
+        run: deno publish --allow-dirty
