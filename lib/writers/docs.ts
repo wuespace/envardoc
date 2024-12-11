@@ -12,11 +12,11 @@ export class DocsWriter implements Writer {
   }
 
   writeSection(section: string, prev: string): string {
-    return `${prev}\n## ${section}\n`;
+    return `${prev}\n## ${section.split("<").join("&lt;")}\n`;
   }
 
   writeDescriptionLine(line: string, prev: string): string {
-    return `${prev}${line}\n`;
+    return `${prev}${line.split("<").join("&lt;")}\n`;
   }
 
   writeVariable(variable: Variable, prev: string): string {
