@@ -44,16 +44,16 @@ export function parse(
     // Variables
     if (currentLine.match(/^[a-zA-Z_]+[a-zA-Z0-9_]*=.*$/g)) {
       // Variable definition that's not commented out
-      const [variable, value] = currentLine.split("=", 2);
+      const [variable, ...value] = currentLine.split("=");
       const optional = false; // Didn't begin with a comment
-      ast.registerVariable(variable, optional, value);
+      ast.registerVariable(variable, optional, value.join("="));
       continue;
     }
     if (currentLine.match(/^# [a-zA-Z_]+[a-zA-Z0-9_]*=.*$/g)) {
       // Variable definition that's commented out
-      const [variable, value] = currentLine.split("=", 2);
+      const [variable, ...value] = currentLine.split("=");
       const optional = true; // Didn't begin with a comment
-      ast.registerVariable(variable.slice(2), optional, value);
+      ast.registerVariable(variable.slice(2), optional, value.join("="));
       continue;
     }
 
